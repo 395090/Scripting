@@ -4,3 +4,162 @@
 
 
 Maak een script op mbo niveau 4 die de tekst toepast en samenvoegd met het huidige script.
+
+
+
+
+
+
+"tekst met de opdracht"
+
+"Verslag layout"
+
+
+Maak op basis van de tekst met de opdracht en het verslag layout een verslag op mbo niveau 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+<Inleiding>
+In dit verslag wordt het huidige facturatieproces bij XYZ Solutions geanalyseerd. Uit observaties blijkt dat er aan het einde van elke maand veel overuren worden gemaakt. Dit komt door inefficiëntie in de verwerking van facturen. Op basis van gesprekken met de leidinggevende is vastgesteld dat automatisering van het proces nodig is. Dit document beschrijft de beginsituatie, het ontwerp van de informatievoorziening en het communicatieplan rondom de implementatie.
+
+<Beginsituatie>
+Momenteel worden facturen handmatig opgesteld, wat veel tijd kost en foutgevoelig is. Daarnaast hebben klanten geklaagd over de facturen: ze missen een gedetailleerd overzicht van hun aankopen, inclusief prijs per stuk en subtotaal per product. Hierdoor ontstaan vragen bij klanten en kost het extra tijd om facturen toe te lichten. De knelpunten in het huidige proces zijn:
+
+Handmatige invoer van facturen, wat inefficiënt is.
+
+Gebrek aan overzichtelijke factuurinformatie voor klanten.
+
+Extra werkuren aan het einde van de maand.
+
+Om deze problemen op te lossen, wordt een systeem ontwikkeld dat automatisch facturen opstelt op basis van aankopen die in de database geregistreerd zijn.
+
+<Ontwerp van de Informatievoorziening>
+<Doel>
+Het doel van het nieuwe systeem is om het facturatieproces te automatiseren. Hiermee willen we:
+
+De tijd die besteed wordt aan facturatie verminderen.
+
+De kans op fouten in facturen verkleinen.
+
+Klanten een overzichtelijke en duidelijke factuur bieden.
+
+<Structuur>
+Het systeem bestaat uit de volgende componenten:
+
+Database: Hierin worden alle klantgegevens en aankoopgegevens opgeslagen.
+
+Facturatiemodule: Dit programma haalt automatisch gegevens op uit de database en stelt een factuur op.
+
+Rapportagemodule: Deze module genereert maandelijks een overzicht van alle facturen en verwerkt feedback van klanten.
+
+De verschillende componenten werken samen om het facturatieproces soepel te laten verlopen.
+
+<Functionaliteiten>
+Het systeem bevat de volgende functionaliteiten:
+
+Automatische factuurgeneratie: Het systeem stelt zelf facturen op op basis van klantgegevens en aankopen.
+
+Overzichtelijke facturen: Elke factuur bevat productnamen, aantallen, prijzen per stuk en subtotale kosten.
+
+Dataregistratie: De database registreert aankopen en koppelt deze aan klantgegevens.
+
+Rapportage: Het systeem kan maandelijkse rapportages genereren met een overzicht van facturen.
+
+Deze functionaliteiten zorgen ervoor dat het proces efficiënter wordt en klanten beter worden geïnformeerd.
+
+<Communicatieplan>
+Om de implementatie van het nieuwe systeem soepel te laten verlopen, wordt een communicatieplan opgesteld:
+
+Interne communicatie: De leidinggevende en medewerkers worden geïnformeerd over de werking van het systeem en ontvangen een handleiding.
+
+Training: Medewerkers krijgen een korte training in het gebruik van de nieuwe software.
+
+Externe communicatie: Klanten worden via e-mail en de website geïnformeerd over het nieuwe factuursysteem en de verbeteringen.
+
+Door duidelijke communicatie worden zowel medewerkers als klanten goed voorbereid op de veranderingen.
+
+<Conclusie>
+Het huidige facturatieproces bij XYZ Solutions is inefficiënt en leidt tot extra werkuren en onduidelijkheid bij klanten. Door het proces te automatiseren met een facturatiesysteem worden deze problemen opgelost. Het systeem genereert facturen op basis van klantgegevens en aankopen, waardoor facturen sneller en nauwkeuriger worden opgesteld. Daarnaast krijgen klanten een gedetailleerd overzicht van hun aankopen. Met een goed communicatieplan zorgen we ervoor dat zowel medewerkers als klanten het nieuwe systeem begrijpen en efficiënt kunnen gebruiken.
+
+
+
+
+
+
+
+import datetime
+
+def print_factuur(producten):
+    """
+    Print een factuur met de huidige datum en tijd, producten en het totaalbedrag.
+
+    Args:
+        producten (list): Een lijst van dicts met productinformatie (naam, prijs, aantal).
+    """
+    # Factuurkop
+    print("\n========== Factuur ==========")
+    print("XYZ Solutions")
+    print(f"{datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')}")
+    print("-----------------------------")
+    
+    totaal = 0
+    
+    # Productoverzicht
+    print("Product\tAantal\tPrijs per stuk\tSubtotaal")
+    print("------------------------------------------------")
+    for product in producten:
+        naam = product["naam"]
+        prijs = product["prijs"]
+        aantal = product["aantal"]
+        subtotaal = prijs * aantal
+        totaal += subtotaal
+        print(f"{naam}\t{aantal}\t${prijs:.2f}\t\t${subtotaal:.2f}")
+    
+    # Totaalbedrag
+    print("------------------------------------------------")
+    print(f"Totaal\t\t\t\t\t${totaal:.2f}\n")
+
+# Hoofdprogramma
+while True:
+    producten = []
+
+    input("Welkom bij de factuurberekening van XYZ Solutions. Druk op enter om te beginnen...")
+
+    while True:
+        # Vraag om productinformatie
+        naam = input("Voer het product in dat je wilt toevoegen, typ 'klaar' om de factuur te genereren: ")
+        if naam.lower() == "klaar":
+            break
+
+        prijs = float(input("Wat is de prijs per stuk van het product? "))
+        aantal = int(input("Hoeveel exemplaren van dit product? "))
+        
+        producten.append({"naam": naam, "prijs": prijs, "aantal": aantal})
+
+    # Genereer factuur
+    print_factuur(producten)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
